@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Számítógép Webshop</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Számítógép Alkatrészek</h1>
+        <button id="toggleTable">Táblázat Megjelenítése/Elrejtése</button>
+    </header>
+    
+    <div class="content">
+        <h2>Kínálatunk</h2>
+        <div class="product">
+            <span class="product-name"><a href="https://www.intel.com/" target="_blank">Processzor</a></span>
+            <span class="product-price">249.99 USD</span>
+        </div>
+        <div class="product">
+            <span class="product-name"><a href="https://www.nvidia.com/" target="_blank">Videokártya</a></span>
+            <span class="product-price">499.99 USD</span>
+        </div>
+        <div class="product">
+            <span class="product-name"><a href="https://www.kingston.com/en/memory/gaming" target="_blank">RAM Memória</a></span>
+            <span class="product-price">99.99 USD</span>
+        </div>
+    </div>
+
+    <table id="productTable">
+        <thead>
+            <tr>
+                <th>Alkatrész neve</th>
+                <th>Ár</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><a href="https://www.intel.com/" target="_blank">Processzor</a></td>
+                <td>249.99 USD</td>
+            </tr>
+            <tr>
+                <td><a href="https://www.nvidia.com/" target="_blank">Videokártya</a></td>
+                <td>499.99 USD</td>
+            </tr>
+            <tr>
+                <td><a href="https://www.kingston.com/en/memory/gaming" target="_blank">RAM Memória</a></td>
+                <td>99.99 USD</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script src="script.js"></script>
+</body>
+</html>

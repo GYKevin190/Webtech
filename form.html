@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Számítógépes Alkatrész Rendelés</title>
+    <style>
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="checkbox"],
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+        select {
+            appearance: none;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <form id="orderForm">
+        <h2>Számítógépes Alkatrész Rendelés</h2>
+        <label for="name">Név:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="address">Szállítási Cím:</label>
+        <textarea id="address" name="address" rows="4" required></textarea>
+
+        <label>Kiválasztott alkatrészek:</label>
+        <input type="checkbox" id="cpu" name="components" value="CPU">
+        <label for="cpu">Processzor</label>
+        <input type="checkbox" id="gpu" name="components" value="GPU">
+        <label for="gpu">Videokártya</label>
+        <input type="checkbox" id="ram" name="components" value="RAM">
+        <label for="ram">RAM Memória</label>
+
+        <label for="color">Háttérszín:</label>
+        <input type="color" id="color" name="color" onchange="changeBackgroundColor()">
+
+        <label for="date">Kívánt szállítási dátum:</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="quantity">Mennyiség:</label>
+        <input type="number" id="quantity" name="quantity" min="1" required>
+
+        <label for="rating">Értékelés:</label>
+        <select id="rating" name="rating">
+            <option value="5">Kiváló</option>
+            <option value="4">Nagyon jó</option>
+            <option value="3">Jó</option>
+            <option value="2">Közepes</option>
+            <option value="1">Gyenge</option>
+        </select>
+
+        <label>Elégedettség:</label>
+        <input type="radio" id="satisfied" name="satisfaction" value="Elégedett">
+        <label for="satisfied">Elégedett</label>
+        <input type="radio" id="notSatisfied" name="satisfaction" value="Nem elégedett">
+        <label for="notSatisfied">Nem elégedett</label>
+
+        <button type="submit">Rendelés Elküldése</button>
+    </form>
+
+    <script>
+        const form = document.getElementById('orderForm');
+
+        function changeBackgroundColor() {
+            const colorInput = document.getElementById('color');
+            document.body.style.backgroundColor = colorInput.value;
+        }
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const nameInput = document.getElementById('name');
+            if (!nameInput.value) {
+                nameInput.classList.add('error');
+                alert('Kérjük, adja meg a nevét!');
+                return;
+            } else {
+                nameInput.classList.remove('error');
+            }
+        });
+    </script>
+</body>
+</html>
