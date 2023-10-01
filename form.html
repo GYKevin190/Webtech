@@ -68,8 +68,8 @@
         <label for="color">Háttérszín:</label>
         <input type="color" id="color" name="color" onchange="changeBackgroundColor()">
 
-        <label for="date">Kívánt szállítási dátum (2023.10.01 után):</label>
-        <input type="date" id="date" name="date" required min="2023-10-02">
+        <label for="date">Kívánt szállítási dátum (aktuális nap + 2 nap):</label>
+        <input type="date" id="date" name="date" required>
 
         <label for="quantity">Mennyiség:</label>
         <input type="number" id="quantity" name="quantity" min="1" required>
@@ -93,17 +93,25 @@
         <textarea id="comments" name="comments" rows="4"></textarea>
 
         <button type="submit">Rendelés Elküldése</button>
-
-        
     </form>
 
     <script>
         const form = document.getElementById('orderForm');
-    
+        const dateInput = document.getElementById('date');
+        
         function changeBackgroundColor() {
             const colorInput = document.getElementById('color');
             document.body.style.backgroundColor = colorInput.value;
         } 
+        
+        // Kiszámoljuk a minimális dátumot (aktuális nap + 2 nap)
+        const today = new Date();
+        const minDate = new Date(today);
+        minDate.setDate(today.getDate() + 2);
+        
+        // Beállítjuk a minimális dátumot a dátummezőhöz
+        const minDateStr = minDate.toISOString().split('T')[0];
+        dateInput.min = minDateStr;
     
         form.addEventListener('submit', function(event) {
             event.preventDefault();
@@ -112,7 +120,6 @@
             const emailInput = document.getElementById('email');
             const quantityInput = document.getElementById('quantity');
             const componentsInput = document.querySelectorAll('input[name="components"]');
-            const dateInput = document.getElementById('date');
     
             if (!emailInput.value.includes('@')) {
                 emailInput.classList.add('error');
@@ -142,19 +149,8 @@
                 return;
             }
     
-            const today = new Date();
-            const selectedDate = new Date(dateInput.value);
-            if (selectedDate <= today) {
-                dateInput.classList.add('error');
-                alert('Kérjük, válasszon egy későbbi szállítási dátumot!');
-                return;
-            } else {
-                dateInput.classList.remove('error');
-            }
-    
             form.submit();
         });
     </script>
-    
 </body>
 </html>
