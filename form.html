@@ -104,12 +104,10 @@
             document.body.style.backgroundColor = colorInput.value;
         } 
         
-        // Kiszámoljuk a minimális dátumot (aktuális nap + 2 nap)
         const today = new Date();
         const minDate = new Date(today);
         minDate.setDate(today.getDate() + 2);
         
-        // Beállítjuk a minimális dátumot a dátummezőhöz
         const minDateStr = minDate.toISOString().split('T')[0];
         dateInput.min = minDateStr;
     
@@ -120,6 +118,7 @@
             const emailInput = document.getElementById('email');
             const quantityInput = document.getElementById('quantity');
             const componentsInput = document.querySelectorAll('input[name="components"]');
+            const addressInput = document.getElementById('address');
     
             if (!emailInput.value.includes('@')) {
                 emailInput.classList.add('error');
@@ -147,6 +146,14 @@
             if (!atLeastOneComponentSelected) {
                 alert('Legalább egy alkatrészt ki kell választani!');
                 return;
+            }
+    
+            if (!/^[a-zA-Z0-9\s]+$/.test(addressInput.value)) { //itt a karakter sorozat helyett a \w-s jelölés is használható lehet, akár ilyen formátumban is: (!/[\w\s]+/.test(addressInput.value))
+                addressInput.classList.add('error');
+                alert('A szállítási címnek tartalmaznia kell betűt és számot is!');
+                return;
+            } else {
+                addressInput.classList.remove('error');
             }
     
             form.submit();
